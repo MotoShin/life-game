@@ -2,13 +2,7 @@ var app = new Vue({
     el: '#app',
     data() {
         return {
-            values: [
-                [1, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0]
-            ],
+            values: [],
             count: 0,
             isPlayable: false,
             animationFlame: 0,
@@ -16,6 +10,14 @@ var app = new Vue({
                 background: '#00ff00'
             }
         }
+    },
+    mounted() {
+        var arr = new Array(65);
+        for (let i = 0; i < 65; i++) {
+            arr[i] = new Array(65).fill(0);
+        }
+        this.values = arr;
+        Vue.set(this.values[0], 0, 1);
     },
     methods: {
         play() {
@@ -53,16 +55,18 @@ var app = new Vue({
             cancelAnimationFrame(this.animateFrame);
         },
         clearAll() {
-            this.values = [
-                [1, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0]
-            ];
+            this.init();
             this.count = 0;
             this.stop();
             this.animateFrame = 0;
+        },
+        init() {
+            var arr = new Array(65);
+            for (let i = 0; i < 65; i++) {
+                arr[i] = new Array(65).fill(0);
+            }
+            this.values = arr;
+            Vue.set(this.values[0], 0, 1);
         }
     }
 })

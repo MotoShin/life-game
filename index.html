@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>LifeGame</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div id="app">
@@ -12,13 +11,13 @@
         <button v-on:click="stop" v-bind:disabled="!isPlayable">停止</button>
         <button v-on:click="clearAll">クリア</button> 
         
-        <table border="1"  bgcolor="#000000" style="border-collapse: collapse">
+        <table border="1" bgcolor="#000000" style="border-collapse: collapse; margin: 25px;">
             <tr v-for="value in values">
-                <td v-for="num in value" v-bind:style="num == 1 ? liveStyle : ''" width="10" height="10">
+                <td v-for="num in value" v-bind:style="num == 1 ? liveStyle : ''" width="8" height="8">
                 </td>
             </tr>
         </table>
-    </div>
     <script src="script/script.js"></script>
+    </div>
 </body>
 </html>
