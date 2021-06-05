@@ -29,7 +29,7 @@ var app = new Vue({
             (function loop() {
                 vm.count++;
                 // 実質sleep
-                if (vm.count % 50 == 0) {
+                if (vm.count % 25 == 0) {
                     var arr = new Array(vm.values.length + 2);
                     for (let i = 0; i < vm.values.length + 2; i++) {
                         arr[i] = new Array(vm.values[0].length + 2).fill(0);
