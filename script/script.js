@@ -14,8 +14,9 @@ var app = new Vue({
             (function loop() {
                 vm.count++;
                 // 実質sleep
-                if (vm.count % 100 == 0) {
+                if (vm.count % 50 == 0) {
                     vm.value++;
+                    vm.count = 0;
                 }
                 vm.animateFrame = requestAnimationFrame(loop);
             }());
