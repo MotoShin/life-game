@@ -17,7 +17,11 @@ var app = new Vue({
             arr[i] = new Array(65).fill(0);
         }
         this.values = arr;
-        Vue.set(this.values[0], 0, 1);
+        Vue.set(this.values[2], 4, 1);
+        Vue.set(this.values[3], 5, 1);
+        Vue.set(this.values[4], 3, 1);
+        Vue.set(this.values[4], 4, 1);
+        Vue.set(this.values[4], 5, 1);
     },
     methods: {
         play() {
@@ -26,24 +30,43 @@ var app = new Vue({
                 vm.count++;
                 // 実質sleep
                 if (vm.count % 50 == 0) {
-                    var arr = JSON.parse(JSON.stringify(vm.values))
-                    for (let row = 0; row < arr.length; row++) {
-                        for (let col = 0; col < arr[row].length; col++) {
-                            if (arr[row][col] == 1) {
-                                tempRow = row;
-                                tempCol = col + 1;
-                                if (tempCol == arr[row].length) {
-                                    tempRow++;
-                                    if (tempRow == arr.length) {
-                                        tempRow = 0;
+                    var arr = new Array(vm.values.length + 2);
+                    for (let i = 0; i < vm.values.length + 2; i++) {
+                        arr[i] = new Array(vm.values[0].length + 2).fill(0);
+                    }
+                    for (let row = 0; row < vm.values.length; row++) {
+                        for (let col = 0; col < vm.values[row].length; col++) {
+                            arr[row + 1][col + 1] = vm.values[row][col];
+                        }
+                    }
+                    var arround = [0, 1, 2]
+                    for (let row = 0; row < vm.values.length; row++) {
+                        for (let col = 0; col < vm.values[row].length; col++) {
+                            var count = 0;
+                            for (const rowElem of arround) {
+                                for (const colElem of arround) {
+                                    if (rowElem == 1 && colElem == 1) {
+                                        continue;
                                     }
-                                    tempCol = 0;
+                                    if(arr[row + rowElem][col + colElem] == 1) {
+                                        count++;
+                                    }
                                 }
-                                Vue.set(vm.values[tempRow], tempCol, 1);
+                            }
+                            if (vm.values[row][col] == 0 && count == 3) {
+                                Vue.set(vm.values[row], col, 1);
+                            }
+                            if (vm.values[row][col] == 1 && (count == 2 || count == 3)) {
+                                Vue.set(vm.values[row], col, 1);
+                            }
+                            if (vm.values[row][col] == 1 && count <= 1) {
+                                Vue.set(vm.values[row], col, 0);
+                            }
+                            if (vm.values[row][col] == 1 && count >= 4) {
                                 Vue.set(vm.values[row], col, 0);
                             }
                         }
-                    }                
+                    }
                     vm.count = 0;
                 }
                 vm.animateFrame = requestAnimationFrame(loop);
@@ -66,7 +89,11 @@ var app = new Vue({
                 arr[i] = new Array(65).fill(0);
             }
             this.values = arr;
-            Vue.set(this.values[0], 0, 1);
+            Vue.set(this.values[2], 4, 1);
+            Vue.set(this.values[3], 5, 1);
+            Vue.set(this.values[4], 3, 1);
+            Vue.set(this.values[4], 4, 1);
+            Vue.set(this.values[4], 5, 1);
         }
     }
 })
