@@ -17,11 +17,7 @@ var app = new Vue({
             arr[i] = new Array(65).fill(0);
         }
         this.values = arr;
-        Vue.set(this.values[2], 4, 1);
-        Vue.set(this.values[3], 5, 1);
-        Vue.set(this.values[4], 3, 1);
-        Vue.set(this.values[4], 4, 1);
-        Vue.set(this.values[4], 5, 1);
+        Vue.set(this.values[0], 0, 0)
     },
     methods: {
         play() {
@@ -29,7 +25,7 @@ var app = new Vue({
             (function loop() {
                 vm.count++;
                 // 実質sleep
-                if (vm.count % 25 == 0) {
+                if (vm.count % 15 == 0) {
                     var arr = new Array(vm.values.length + 2);
                     for (let i = 0; i < vm.values.length + 2; i++) {
                         arr[i] = new Array(vm.values[0].length + 2).fill(0);
@@ -84,6 +80,27 @@ var app = new Vue({
             this.animateFrame = 0;
         },
         init() {
+            var arr = new Array(this.values.length);
+            for (let i = 0; i < this.values.length; i++) {
+                arr[i] = new Array(this.values[i].length).fill(0);
+            }
+            this.values = arr;
+            Vue.set(this.values[0], 0, 0)
+        },
+        random() {
+            var arr = new Array(this.values.length);
+            for (let i = 0; i < this.values.length; i++) {
+                arr[i] = new Array(this.values[i].length).fill(0);
+            }
+            this.values = arr;
+
+            for (let row = 0; row < this.values.length; row++) {
+                for (let col = 0; col < this.values[row].length; col++) {
+                    Vue.set(this.values[row], col, Math.floor(Math.random() * 2));
+                }
+            }
+        },
+        grinder() {
             var arr = new Array(65);
             for (let i = 0; i < 65; i++) {
                 arr[i] = new Array(65).fill(0);

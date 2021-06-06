@@ -7,16 +7,21 @@
 </head>
 <body>
     <div id="app">
+        <h1>Life Game</h1>
         <button v-on:click="play" v-bind:disabled="isPlayable">再生</button>
         <button v-on:click="stop" v-bind:disabled="!isPlayable">停止</button>
+        <button v-on:click="random" v-bind:disabled="isPlayable">ランダム</button>
         <button v-on:click="clearAll">クリア</button> 
         
-        <table border="1" bgcolor="#000000" style="border-collapse: collapse; margin: 25px;">
+        <table bgcolor="#000000" style="border-collapse: collapse; margin: 25px;">
             <tr v-for="value in values">
                 <td v-for="num in value" v-bind:style="num == 1 ? liveStyle : ''" width="8" height="8">
                 </td>
             </tr>
         </table>
+
+        <h2>代表的なパターン</h2>
+        <button v-on:click="grinder" v-bind:disabled="isPlayable">グラインダー</button>
     <script src="script/script.js"></script>
     </div>
 </body>
