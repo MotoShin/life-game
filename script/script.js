@@ -163,6 +163,30 @@ var app = new Vue({
             for (let n = 0; n < p.length; n++) {
                 Vue.set(this.values[p[n][0]], p[n][1], 1);
             }
+        },
+        line() {
+            var arr = new Array(65);
+            for (let i = 0; i < 65; i++) {
+                arr[i] = new Array(65).fill(0);
+            }
+            this.values = arr;
+            for (let n = 13; n < 23; n++) {
+                Vue.set(this.values[11], n, 1);
+            }
+        },
+        queenBee() {
+            var arr = new Array(65);
+            for (let i = 0; i < 65; i++) {
+                arr[i] = new Array(65).fill(0);
+            }
+            this.values = arr;
+            var p = [[8,17],[9,16],[9,17],[10,15],[10,16],[10,21],[10,22],
+            [11,5],[11,6],[11,14],[11,15],[11,16],[11,21],[11,21],[11,22],
+            [11,25],[11,26],[12,5],[12,6],[12,15],[12,16],[12,21],[12,22],
+            [12,25],[12,26],[13,16],[13,17],[14,17]];
+            for (let n = 0; n < p.length; n++) {
+                Vue.set(this.values[p[n][0]], p[n][1], 1);
+            }
         }
     }
 })
