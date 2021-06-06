@@ -14,14 +14,20 @@
         <button v-on:click="clearAll">クリア</button> 
         
         <table bgcolor="#000000" style="border-collapse: collapse; margin: 25px;">
-            <tr v-for="value in values">
-                <td v-for="num in value" v-bind:style="num == 1 ? liveStyle : ''" width="8" height="8">
+            <tr v-for="(value, row) in values">
+                <td v-for="(num, col) in value" v-bind:style="num == 1 ? liveStyle : ''" @click="push(row, col)" width="8" height="8">
                 </td>
             </tr>
         </table>
 
         <h2>代表的なパターン</h2>
         <button v-on:click="grinder" v-bind:disabled="isPlayable">グラインダー</button>
+        <button v-on:click="spaceShip" v-bind:disabled="isPlayable">宇宙船</button>
+        <button v-on:click="grinderGun" v-bind:disabled="isPlayable">グラインダーガン</button>
+
+        <h2>デバグ</h2>
+        <button v-on:click="show" v-bind:disabled="isPlayable">座標確認</button>
+        {{ point }}
     <script src="script/script.js"></script>
     </div>
 </body>
